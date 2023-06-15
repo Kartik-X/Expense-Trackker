@@ -13,32 +13,46 @@
       <input type="checkbox" id="chk" />
 
       <div class="signup">
-        <form>
+        <form action="/" method="post" id="signup_form">
           <label for="">Sign up</label>
           <input
             type="text"
             name="username"
+            id="signup_username"
             placeholder="User name"
             required=""
           />
-          <input type="email" name="email" placeholder="Email" required="" />
+          <input
+            type="email"
+            name="email"
+            id="signup_email"
+            placeholder="Email"
+            required=""
+          />
           <input
             type="password"
             name="password"
+            id="signup_password"
             placeholder="Password"
             required=""
           />
           <button>Sign up</button>
         </form>
+        <ul id="ul"></ul>
       </div>
 
       <div class="login">
-        <form>
+        <form action="/" method="post" id="loginform">
           <label for="chk">Login</label>
-          <input type="email" name="email" placeholder="Email" required="" />
+          <input
+            type="email"
+            name="login_email"
+            placeholder="Email"
+            required=""
+          />
           <input
             type="password"
-            name="pswd"
+            name="login_password"
             placeholder="Password"
             required=""
           />
@@ -46,5 +60,7 @@
         </form>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="signup_login.js"></script>
   </body>
 </html>
