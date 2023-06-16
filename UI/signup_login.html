@@ -13,7 +13,7 @@
       <input type="checkbox" id="chk" />
 
       <div class="signup">
-        <form action="/" method="post" id="signup_form">
+        <form action="/" method="get" id="signup_form">
           <label for="">Sign up</label>
           <input
             type="text"
@@ -23,7 +23,7 @@
             required=""
           />
           <input
-            type="email"
+            type="text"
             name="email"
             id="signup_email"
             placeholder="Email"
@@ -38,26 +38,29 @@
           />
           <button>Sign up</button>
         </form>
-        <ul id="ul"></ul>
+        <ul id="ul1"></ul>
       </div>
 
       <div class="login">
-        <form action="/" method="post" id="loginform">
+        <form action="/" method="post" id="login_form">
           <label for="chk">Login</label>
           <input
             type="email"
             name="login_email"
+            id="login_email"
             placeholder="Email"
             required=""
           />
           <input
             type="password"
             name="login_password"
+            id="login_password"
             placeholder="Password"
             required=""
           />
           <button>Login</button>
         </form>
+        <ul id="ul2"></ul>
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
