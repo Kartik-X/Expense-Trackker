@@ -26,6 +26,7 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
   try {
     const response = await userservice.login(req.body.email, req.body.password);
+
     return res.status(200).json({
       data: response,
       success: true,
@@ -33,7 +34,6 @@ const login = async (req, res) => {
       err: {},
     });
   } catch (error) {
-    console.log(error.error);
     return res.status(500).json({
       data: {},
       success: false,

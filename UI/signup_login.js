@@ -52,8 +52,8 @@ function login_submit(e) {
   async function loginpost() {
     try {
       const response = await axios.post("http://localhost:5000/login", obj);
-      alert("Logged in Successfully");
       ull.innerHTML = "";
+      alert("Logged in Successfully");
     } catch (error) {
       const error_data = error.response.data.err;
       const error_object = error_data.error;

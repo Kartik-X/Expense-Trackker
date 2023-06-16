@@ -1,5 +1,6 @@
 const UserRepository = require("../repository/signup_login-repository");
 const userrepository = new UserRepository();
+const bcrypt = require("bcrypt");
 
 class UserService {
   async login(email, plainPassword) {
@@ -19,8 +20,13 @@ class UserService {
     }
   }
 
-  checkpassword(userPassword, storedPassword) {
-    return userPassword == storedPassword;
+  checkpassword(userPassword, encryptedPassword) {
+    try {
+      return bcrypt.compareSync(userPassword, encryptedPassword);
+    } catch (error) {
+      console.log("Something went wrong in password comparision");
+      throw error;
+    }
   }
 }
 module.exports = UserService;
