@@ -1,0 +1,107 @@
+body{
+   background-color:rgb(236, 231, 231);
+   font-family: Helvetica;
+   color: black;
+   font-size: 14px;
+   text-align:center;  
+ }
+input{
+   margin-top: 30px;
+   margin-right: 10px;
+   padding:5px 10px;
+   border-radius: 5px;
+   border: 3px solid #55b6b2;
+   font-size: 15px;
+   transition: .3s ease-in;
+}
+select{
+   margin-top: 30px;
+   margin-right: 10px;
+   padding:5px 10px;
+   border-radius: 5px;
+   border-color: #55b6b2;
+   border-width: 3px;
+   font-size: 15px;
+   transition: .3s ease-in;
+}
+
+button{
+   background-color: #55b6b2;
+   border:1px solid  #55b6b2;
+   margin-right: 5px;
+   padding:8px 12px;
+   border-radius: 4px;
+   text-transform: uppercase;
+   color: #fff;
+   font-weight: bold;
+   letter-spacing: 1px;
+   cursor: pointer;
+}
+.main{
+
+   max-width: 1200px;
+   width: 100%;
+   margin: 20px auto;
+   background-color:rgb(245, 239, 239);
+   padding: 20px;
+   border-radius: 4px;
+ }
+ th{
+   background-color: #55b6b2;
+   padding:10px 5px;
+   color: #fff;
+   text-align: left;
+ }
+ td{
+   padding:10px 5px;
+ }
+ .table-responsive{
+   overflow-x: auto;
+   -webkit-overflow-scrolling: touch;
+   margin-top: 10px;
+   
+ }
+ .expense-data {
+   width: 100%;
+   border-spacing: 0;
+ }
+ .Deletebtn{
+  background-color: #55b6b2;
+  border:1px solid  #55b6b2;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+ }
+ .editbtn{
+  background-color: #55b6b2;
+  border:1px solid  #55b6b2;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+ }
+ 
+ .expense-data td, .expense-data th {
+  text-align: center;
+  word-break: break-all;
+ }
+ .exp-date{
+   width: 10%;
+ }
+
+.exp-amt {
+  width: 30%;
+}
+.exp-name {
+width: 30%;
+}
+
+.exp-cat {
+  width: 15%;
+}
+.exp-action {
+  width: 15%;
+}

@@ -54,6 +54,7 @@ function login_submit(e) {
       const response = await axios.post("http://localhost:5000/login", obj);
       ull.innerHTML = "";
       alert("Logged in Successfully");
+      window.location.href = "/UI/Expenses/expense.html";
     } catch (error) {
       const error_data = error.response.data.err;
       const error_object = error_data.error;

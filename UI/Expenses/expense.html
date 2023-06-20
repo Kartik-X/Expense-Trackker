@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EXPENSES</title>
+    <link rel="stylesheet" type="text/css" href="expense.css" />
+    
+    
+  <body>
+    <main class="main">
+      <form id="form">
+        <input 
+        type="date"
+        class="date"
+        id="date"
+        name="date"
+        required/>
+        <input
+          type="number"
+          class="exp-amount"
+          id="exp_amount"
+          name="expense_amount"
+          placeholder="Enter Expense Amount"
+          required
+        />
+        <input
+          type="text"
+          class="exp-desc"
+          id="exp_desc"
+          name="description"
+          placeholder="Description"
+          required
+        />
+        <select id="category" name="category">
+          <option>Grocery</option>
+          <option>Restaurant</option>
+          <option>Fuel</option>
+          <option>Movies</option>
+          <option>Travel</option>
+          <option>Other</option>
+        </select>
+        <button type="submit" id="button">Submit</button>
+      </form>
+      <div class="table-responsive">
+        <table class="expense-data">
+          <thead>
+            <tr>
+              <th class="exp-date">Date</th>
+              <th class="exp-amt">Expense Amount</th>
+              <th class="exp-name">Expense Name</th>
+              <th class="exp-cat">Category</th>
+              <th class="exp-action">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="expense.js"></script>
+  </body>
+</html>
