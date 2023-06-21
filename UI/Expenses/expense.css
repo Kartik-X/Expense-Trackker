@@ -105,3 +105,10 @@ width: 30%;
 .exp-action {
   width: 15%;
 }
+
+.edit-wrap {
+  display: none;
+  transition: 3s ease-in;
+  margin-left: 970px;
+  margin-top:-35px;
+}
