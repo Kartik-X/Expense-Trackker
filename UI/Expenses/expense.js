@@ -7,7 +7,10 @@ const update = document.querySelector(".edit-wrap");
 const user = document.querySelector(".expense-data tbody");
 
 async function getdata() {
-  const getitems = await axios.get("http://localhost:5000/expense");
+  const token = localStorage.getItem("userId");
+  const getitems = await axios.get("http://localhost:5000/expense", {
+    headers: { Authorization: token },
+  });
   const response = getitems.data;
   const data = response.data;
 
@@ -60,7 +63,7 @@ function onscreen(get) {
     description: exp_desc,
     category: exp_cat,
   };
-  console.log(obj);
+
   deleteBtn.addEventListener("click", async () => {
     deleteBtn.parentNode.parentNode.remove();
     deleteTask(exp_id);
@@ -147,11 +150,13 @@ function onsubmit(e) {
     expense_amount: amount.value,
     description: description.value,
     category: category.value,
+    userId: localStorage.getItem("userId"),
   };
-
+  console.log(obj);
   async function postdata() {
     user.innerHTML = "";
-    await axios.post("http://localhost:5000/expense", obj);
+    const post = await axios.post("http://localhost:5000/expense", obj);
+    console.log(post);
     await getdata();
   }
   postdata();

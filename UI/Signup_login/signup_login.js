@@ -52,8 +52,11 @@ function login_submit(e) {
   async function loginpost() {
     try {
       const response = await axios.post("http://localhost:5000/login", obj);
+      const result = response.data;
+      const res = result.data;
+
+      localStorage.setItem("userId", res);
       ull.innerHTML = "";
-      alert("Logged in Successfully");
       window.location.href = "/UI/Expenses/expense.html";
     } catch (error) {
       const error_data = error.response.data.err;

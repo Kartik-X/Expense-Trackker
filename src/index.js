@@ -15,5 +15,5 @@ app.use("/", userroute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port:${PORT}`);
-  db.sequelize.sync();
+  //db.sequelize.sync();
 });

@@ -1,13 +1,18 @@
 const { Expense } = require("../models/index");
+const { JWT_KEY } = require("../config/serverConfig");
+const jwt = require("jsonwebtoken");
 
 class ExpenseRepository {
-  async createdata({ date, expense_amount, description, category }) {
+  async createdata({ date, expense_amount, description, category, userId }) {
+    const userid = jwt.verify(userId, JWT_KEY).userId;
+
     try {
       const expense = await Expense.create({
         date,
         expense_amount,
         description,
         category,
+        userId: userid,
       });
       return expense;
     } catch (error) {
@@ -16,9 +21,13 @@ class ExpenseRepository {
     }
   }
 
-  async getdata() {
+  async getdata(data) {
     try {
-      const expense = await Expense.findAll();
+      const expense = await Expense.findAll({
+        where: {
+          userId: data.user.id,
+        },
+      });
       return expense;
     } catch (error) {
       console.log(error);

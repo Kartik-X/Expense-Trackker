@@ -4,6 +4,7 @@ const expenseservice = new ExpenseService();
 const create = async (req, res) => {
   try {
     const expense = await expenseservice.createdata(req.body);
+
     return res.status(201).json({
       data: expense,
       success: true,
@@ -23,7 +24,7 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const expenses = await expenseservice.getdata();
+    const expenses = await expenseservice.getdata(req);
     return res.status(201).json({
       data: expenses,
       success: true,
