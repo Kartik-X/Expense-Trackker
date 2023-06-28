@@ -109,6 +109,28 @@ width: 30%;
 .edit-wrap {
   display: none;
   transition: 3s ease-in;
-  margin-left: 970px;
-  margin-top:-35px;
+position: relative;
+left:970px;
+bottom:68px;
+margin-bottom:-50px ;
+
+}
+
+#premium{
+  display:none;
+  background-color: rgb(148, 147, 152);
+  color:hsl(60, 100%, 50%);
+ position: relative;
+ bottom: 82px;
+ left:560px;
+  transition: 3s ease-in;
+}
+#premiumuser{
+  display:none;
+  background-color: rgb(148, 147, 152);
+  color:hsl(60, 100%, 50%);
+ position: relative;
+ bottom: 82px;
+ left:535px;
+  transition: 3s ease-in;
 }

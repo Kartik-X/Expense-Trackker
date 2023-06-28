@@ -1,4 +1,6 @@
 const ExpenseService = require("../services/expense-service");
+const { User } = require("../models/index");
+
 const expenseservice = new ExpenseService();
 
 const create = async (req, res) => {
@@ -25,6 +27,7 @@ const create = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const expenses = await expenseservice.getdata(req);
+
     return res.status(201).json({
       data: expenses,
       success: true,
@@ -82,9 +85,30 @@ const destroy = async (req, res) => {
   }
 };
 
+const premium_check = async (req, res) => {
+  try {
+    const response = await req.user.dataValues.ispremium;
+    return res.status(201).json({
+      data: response,
+      success: true,
+      message: "Successfully checked for premium",
+      error: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to check for premium",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   getAll,
   update,
   destroy,
+  premium_check,
 };

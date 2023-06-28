@@ -17,7 +17,6 @@ class UserService {
       }
       const newJWT = this.createToken({ userId: user.id });
       return newJWT;
-      return user;
     } catch (error) {
       console.log("Something went wrong in login  process");
       throw error;

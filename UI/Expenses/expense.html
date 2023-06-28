@@ -38,13 +38,15 @@
           <option>Fuel</option>
           <option>Movies</option>
           <option>Travel</option>
+          <option>Recreation</option>
           <option>Other</option>
         </select>
-        <button type="submit" id="button">Submit</button>
-       
-        
+        <button type="submit" id="button">Submit</button>   
       </form>
+      <button type="submit" id="premium">Buy Premium </button>
+      <button type="submit" id="premiumuser"> Premium Member</button>
       <button class="edit-wrap"> Update</button>
+
       <div class="table-responsive">
         <table class="expense-data">
           <thead>
@@ -61,6 +63,8 @@
         </table>
       </div>
     </main>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="expense.js"></script>
   </body>

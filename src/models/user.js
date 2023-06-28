@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Expense);
+      //User.hasMany(models.Expense);
+      User.hasMany(models.order);
     }
   }
   User.init(
@@ -27,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
+      },
+      ispremium: {
+        type: DataTypes.BOOLEAN,
       },
     },
     {

@@ -28,6 +28,7 @@ class ExpenseRepository {
           userId: data.user.id,
         },
       });
+
       return expense;
     } catch (error) {
       console.log(error);
