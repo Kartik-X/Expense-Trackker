@@ -1,4 +1,5 @@
 const { order } = require("../models/index");
+const { User, Expense } = require("../models/index");
 
 const {
   RAZORPAY_KEY_ID,
@@ -88,7 +89,46 @@ const Statusupdate = async (req, res) => {
   }
 };
 
+const leaderboard = async (req, res) => {
+  try {
+    const All_users = await User.findAll();
+    let data = [];
+    for (let i = 1; i <= All_users.length; i++) {
+      const user = await User.findOne({
+        where: {
+          id: i,
+        },
+        include: Expense,
+      });
+
+      let sum = 0;
+
+      user.Expenses.forEach((expense) => {
+        sum = sum + Number(expense.expense_amount);
+      });
+      data.push({ user_name: user.username, sum, premium: user.ispremium });
+      data.sort((a, b) => b.sum - a.sum);
+    }
+
+    return res.status(201).json({
+      response: data,
+      success: true,
+      message: "Successfully created leaderboard",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to update leaderboard",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   premium,
   Statusupdate,
+  leaderboard,
 };

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //Expense.belongsTo(models.User);
+      Expense.belongsTo(models.User, { foreignKey: "userId" });
     }
   }
   Expense.init(
@@ -28,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       category: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      userId: {
-        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },

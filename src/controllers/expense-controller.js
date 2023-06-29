@@ -1,5 +1,5 @@
 const ExpenseService = require("../services/expense-service");
-const { User } = require("../models/index");
+// const { User } = require("../models/index");
 
 const expenseservice = new ExpenseService();
 
