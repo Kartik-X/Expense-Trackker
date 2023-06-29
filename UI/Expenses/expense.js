@@ -7,6 +7,7 @@ const update = document.querySelector(".edit-wrap");
 const user = document.querySelector(".expense-data tbody");
 const premium = document.getElementById("premium");
 const premium_user = document.getElementById("premiumuser");
+const leader = document.getElementById("leaderboard");
 
 async function getdata() {
   const token = localStorage.getItem("userId");
@@ -16,7 +17,6 @@ async function getdata() {
       headers: { Authorization: token },
     });
     if (check.data.data == true) {
-      // premium.style.display = "none";
       premium_user.style.display = "inline";
     } else {
       if (check.data.data != true) {
@@ -194,3 +194,16 @@ async function submit(e) {
     alert("Something went wrong");
   });
 }
+
+leader.addEventListener("click", async () => {
+  // window.location.href = "/UI/Premium/premium.html";
+  const token = localStorage.getItem("userId");
+  const check = await axios.get("http://localhost:5000/premiumcheck", {
+    headers: { Authorization: token },
+  });
+  if (check.data.data == true) {
+    window.location.href = "/UI/Premium/premium.html";
+  } else {
+    alert("Purchase Premium!! To enjoy Leaderboard like other feautures");
+  }
+});

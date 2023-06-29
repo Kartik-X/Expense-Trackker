@@ -127,10 +127,19 @@ margin-bottom:-50px ;
 }
 #premiumuser{
   display:none;
-  background-color: rgb(148, 147, 152);
+  background-color: rgb(99, 98, 107);
   color:hsl(60, 100%, 50%);
- position: relative;
- bottom: 82px;
- left:535px;
+ position: absolute;
+top:20px;
+right:145px;
   transition: 3s ease-in;
+}
+
+#leaderboard{
+  
+  background-color: rgb(99, 98, 107);
+  color:hsl(60, 100%, 50%);
+  position:absolute;
+  top:30px;
+  left:150px;
 }
