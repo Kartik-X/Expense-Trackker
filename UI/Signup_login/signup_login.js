@@ -9,6 +9,8 @@ const login_email = document.getElementById("login_email");
 const login_password = document.getElementById("login_password");
 const ull = document.getElementById("ul2");
 
+const forgot_password = document.querySelector(".forgot_password");
+
 signup_form.addEventListener("submit", onsubmit);
 
 function onsubmit(e) {
@@ -31,7 +33,6 @@ function onsubmit(e) {
       ul.appendChild(li);
     }
   }
-
   postdata();
 
   signup_username.value = "";
@@ -72,3 +73,7 @@ function login_submit(e) {
   login_email.value = "";
   login_password.value = "";
 }
+
+forgot_password.addEventListener("click", () => {
+  window.open("http://127.0.0.1:5500/UI/Signup_login/forgot_password.html");
+});

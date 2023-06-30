@@ -1,7 +1,12 @@
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
+const Sib = require("sib-api-v3-sdk");
 
 dotenv.config();
+
+const client = Sib.ApiClient.instance;
+const apiKey = client.authentications["api-key"];
+apiKey.apiKey = process.env.API_KEY;
 
 module.exports = {
   PORT: process.env.PORT,
@@ -9,4 +14,5 @@ module.exports = {
   JWT_KEY: process.env.JWT_KEY,
   RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
   RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET,
+  //apiKey: apiKey,
 };

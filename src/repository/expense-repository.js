@@ -50,14 +50,22 @@ class ExpenseRepository {
     }
   }
 
-  async deletedata(userid) {
+  async deletedata(userid, user) {
     try {
+      const resource = await User.update(
+        { Total_Expense: user.Total_Expense },
+        {
+          where: {
+            id: user.id,
+          },
+        }
+      );
       await Expense.destroy({
         where: {
           id: userid,
         },
       });
-      return true;
+      return resource;
     } catch (error) {
       console.log(error);
       console.log("Something went in repository layer");

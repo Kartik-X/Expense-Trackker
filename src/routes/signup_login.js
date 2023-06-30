@@ -7,4 +7,6 @@ router.post("/sign-up", signup_LoginController.signup);
 
 router.post("/login", signup_LoginController.login);
 
+router.post("/forgot-password", signup_LoginController.forgotPassword);
+
 module.exports = router;

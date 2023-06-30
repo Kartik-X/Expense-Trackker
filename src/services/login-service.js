@@ -3,6 +3,7 @@ const userrepository = new UserRepository();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_KEY } = require("../config/serverConfig");
+const Sib = require("sib-api-v3-sdk");
 
 class UserService {
   async login(email, plainPassword) {
@@ -39,6 +40,33 @@ class UserService {
     } catch (error) {
       console.log("Something went wrong in token validation", error);
       throw error;
+    }
+  }
+
+  async forgotPassword(loginemail) {
+    try {
+      const tranEmailApi = new Sib.TransactionalEmailsApi();
+
+      const sender = {
+        email: "meta619012@gmail.com",
+        name: "Expense-password Reset",
+      };
+
+      const recievers = [
+        {
+          email: loginemail,
+        },
+      ];
+
+      await tranEmailApi.sendTransacEmail({
+        sender,
+        to: recievers,
+        subject: "Trail to check the working",
+        textContent: "Sendin blue checking out",
+      });
+    } catch (error) {
+      console.log("Something went wrong at Service layer");
+      throw { error };
     }
   }
 }

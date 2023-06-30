@@ -43,7 +43,30 @@ const login = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  try {
+    const email = req.body.login_email;
+
+    const response = await userservice.forgotPassword(email);
+
+    return res.status(200).json({
+      data: response,
+      success: true,
+      message: "Password recovery email sent Successfully",
+      err: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Unable to send Password recovery email ",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   signup,
   login,
+  forgotPassword,
 };

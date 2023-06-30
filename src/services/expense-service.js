@@ -1,3 +1,4 @@
+const { login } = require("../controllers/signup_login-controller");
 const ExpenseRepository = require("../repository/expense-repository");
 
 class ExpenseService {
@@ -35,9 +36,11 @@ class ExpenseService {
     }
   }
 
-  async deletedata(userid) {
+  async deletedata(userid, amount, user) {
     try {
-      const response = await this.expenseRepository.deletedata(userid);
+      user.Total_Expense = user.Total_Expense - Number(amount);
+
+      const response = await this.expenseRepository.deletedata(userid, user);
       return response;
     } catch (error) {
       console.log("Something went wrong at Service layer");
@@ -52,10 +55,8 @@ class ExpenseService {
 
       if (user.Total_Expense == undefined) {
         user.Total_Expense = amount;
-        console.log(user.Total_Expense);
       } else {
         user.Total_Expense = user.Total_Expense + Number(amount);
-        console.log(user.Total_Expense);
       }
 
       const expense = await this.expenseRepository.updateexpense(userId, user);

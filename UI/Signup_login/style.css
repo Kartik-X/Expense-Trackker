@@ -79,9 +79,6 @@ button{
 	font-family: Arial, Helvetica, sans-serif;
 	
 }
-button:hover{
-	background: #6d44b8;
-}
 .login{
 	height: 460px;
 	background: #eee;
@@ -102,4 +99,10 @@ button:hover{
 }
 #chk:checked ~ .signup label{
 	transform: scale(0.6);
+}
+
+.forgot_password{
+	background: none;
+	font-size: 12px;
+	color:rgb(18, 17, 17)
 }

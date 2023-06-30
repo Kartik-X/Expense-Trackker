@@ -67,7 +67,12 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
   try {
-    const response = await expenseservice.deletedata(req.params.id);
+    const response = await expenseservice.deletedata(
+      req.params.id,
+      req.query.amount,
+      req.user
+    );
+
     return res.status(201).json({
       data: response,
       success: true,

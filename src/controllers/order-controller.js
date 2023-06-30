@@ -110,14 +110,6 @@ const leaderboard = async (req, res) => {
         premium: user.ispremium,
         Total_Expense: user.Total_Expense,
       });
-
-      // let sum = 0;
-
-      // user.Expenses.forEach((expense) => {
-      //   sum = sum + Number(expense.expense_amount);
-      //   console.log(user.username);
-      // });
-      // data.push({ user_name: user.username, sum, premium: user.ispremium });
     }
     data.sort((a, b) => b.Total_Expense - a.Total_Expense);
     return res.status(201).json({

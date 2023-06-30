@@ -30,5 +30,13 @@ class UserRepository {
       throw error;
     }
   }
+
+  // async forgot_pasword({ login_email }) {
+  //   try {
+  //   } catch (error) {
+  //     console.log("Something went wrong in repository layer");
+  //     throw error;
+  //   }
+  // }
 }
 module.exports = UserRepository;
