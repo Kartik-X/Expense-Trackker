@@ -1,4 +1,4 @@
-const { Expense } = require("../models/index");
+const { Expense, User } = require("../models/index");
 const { JWT_KEY } = require("../config/serverConfig");
 const jwt = require("jsonwebtoken");
 
@@ -58,6 +58,22 @@ class ExpenseRepository {
         },
       });
       return true;
+    } catch (error) {
+      console.log(error);
+      console.log("Something went in repository layer");
+    }
+  }
+  async updateexpense(userid, data) {
+    try {
+      const resource = await User.update(
+        { Total_Expense: data.Total_Expense },
+        {
+          where: {
+            id: userid,
+          },
+        }
+      );
+      return resource;
     } catch (error) {
       console.log(error);
       console.log("Something went in repository layer");

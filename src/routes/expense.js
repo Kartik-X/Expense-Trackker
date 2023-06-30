@@ -8,5 +8,10 @@ router.post("/expense", expense_Controller.create);
 router.get("/expense", authentication.Authenticate, expense_Controller.getAll);
 router.patch("/expense/:id", expense_Controller.update);
 router.delete("/expense/:id", expense_Controller.destroy);
+router.patch(
+  "/total_expense",
+  authentication.Authenticate,
+  expense_Controller.leaderboard
+);
 
 module.exports = router;

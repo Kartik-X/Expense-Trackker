@@ -105,10 +105,31 @@ const premium_check = async (req, res) => {
   }
 };
 
+const leaderboard = async (req, res) => {
+  try {
+    const expense = await expenseservice.updateexpense(req.user, req.body);
+    return res.status(201).json({
+      data: expense,
+      success: true,
+      message: "Successfully updated expense",
+      error: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to update the total expense",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   getAll,
   update,
   destroy,
   premium_check,
+  leaderboard,
 };

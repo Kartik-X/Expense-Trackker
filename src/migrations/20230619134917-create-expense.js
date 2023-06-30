@@ -34,6 +34,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      Total_Expense: {
+        type: Sequelize.INTEGER,
+      },
     });
   },
   async down(queryInterface, Sequelize) {

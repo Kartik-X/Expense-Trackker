@@ -61,9 +61,9 @@ function onscreen(get) {
   deleteBtn.innerHTML = `<span class="Deletebtn">Delete</span>`;
   td_action.appendChild(deleteBtn);
 
-  const editbtn = document.createElement("button");
-  editbtn.innerHTML = `<span class= "editbtn">Edit</span>`;
-  td_action.appendChild(editbtn);
+  // const editbtn = document.createElement("button");
+  // editbtn.innerHTML = `<span class= "editbtn">Edit</span>`;
+  // td_action.appendChild(editbtn);
 
   tr.appendChild(td_date);
   tr.appendChild(td_amt);
@@ -78,46 +78,46 @@ function onscreen(get) {
     await axios.delete(`http://localhost:5000/expense/${exp_id}`);
   });
 
-  editbtn.addEventListener("click", async () => {
-    document.querySelector(".edit-wrap").style.display = "block";
-    document.querySelector("button").style.display = "none";
+  // editbtn.addEventListener("click", async () => {
+  //   document.querySelector(".edit-wrap").style.display = "block";
+  //   document.querySelector("button").style.display = "none";
 
-    document.getElementById("date").value = exp_date;
-    document.getElementById("exp_amount").value = exp_amt;
-    document.getElementById("exp_desc").value = exp_desc;
-    document.getElementById("category").value = exp_cat;
+  //   document.getElementById("date").value = exp_date;
+  //   document.getElementById("exp_amount").value = exp_amt;
+  //   document.getElementById("exp_desc").value = exp_desc;
+  //   document.getElementById("category").value = exp_cat;
 
-    const update = document.querySelector(".edit-wrap");
+  //   const update = document.querySelector(".edit-wrap");
 
-    update.addEventListener("click", async () => {
-      const updatedDate = document.getElementById("date").value;
-      const updatedAmount = document.getElementById("exp_amount").value;
-      const updatedDescription = document.getElementById("exp_desc").value;
-      const updatedCategory = document.getElementById("category").value;
+  //   update.addEventListener("click", async () => {
+  //     const updatedDate = document.getElementById("date").value;
+  //     const updatedAmount = document.getElementById("exp_amount").value;
+  //     const updatedDescription = document.getElementById("exp_desc").value;
+  //     const updatedCategory = document.getElementById("category").value;
 
-      document.querySelector(".edit-wrap").style.display = "none";
-      document.querySelector("button").style.display = "inline";
+  //     document.querySelector(".edit-wrap").style.display = "none";
+  //     document.querySelector("button").style.display = "inline";
 
-      let date_temp = updatedDate.split("-");
-      let date_update = `${date_temp[2]}/${date_temp[1]}/${date_temp[0]}`;
+  //     let date_temp = updatedDate.split("-");
+  //     let date_update = `${date_temp[2]}/${date_temp[1]}/${date_temp[0]}`;
 
-      const obj = {
-        date: date_update,
-        expense_amount: updatedAmount,
-        description: updatedDescription,
-        category: updatedCategory,
-      };
+  //     const obj = {
+  //       date: date_update,
+  //       expense_amount: updatedAmount,
+  //       description: updatedDescription,
+  //       category: updatedCategory,
+  //     };
 
-      await axios.patch(`http://localhost:5000/expense/${exp_id}`, obj);
-      user.innerHTML = "";
-      await getdata();
+  //     await axios.patch(`http://localhost:5000/expense/${exp_id}`, obj);
+  //     user.innerHTML = "";
+  //     await getdata();
 
-      document.getElementById("date").value = "";
-      document.getElementById("exp_amount").value = "";
-      document.getElementById("exp_desc").value = "";
-      document.querySelector("button").style.display = "inline";
-    });
-  });
+  //     document.getElementById("date").value = "";
+  //     document.getElementById("exp_amount").value = "";
+  //     document.getElementById("exp_desc").value = "";
+  //     document.querySelector("button").style.display = "inline";
+  //   });
+  // });
 }
 
 form.addEventListener("submit", onsubmit);
@@ -139,8 +139,19 @@ function onsubmit(e) {
   async function postdata() {
     user.innerHTML = "";
     const post = await axios.post("http://localhost:5000/expense", obj);
+
     await getdata();
+
+    const token = localStorage.getItem("userId");
+    const config = { headers: { Authorization: token } };
+
+    const total_expense = await axios.patch(
+      "http://localhost:5000/total_expense",
+      obj,
+      config
+    );
   }
+
   postdata();
 
   date.value = "";
@@ -187,7 +198,7 @@ async function submit(e) {
       {
         order_id: options.order_id,
         payment_id: paymentId,
-        status: "Fail",
+        status: "Failure",
       },
       { headers: { Authorization: token } }
     );
@@ -196,7 +207,6 @@ async function submit(e) {
 }
 
 leader.addEventListener("click", async () => {
-  // window.location.href = "/UI/Premium/premium.html";
   const token = localStorage.getItem("userId");
   const check = await axios.get("http://localhost:5000/premiumcheck", {
     headers: { Authorization: token },

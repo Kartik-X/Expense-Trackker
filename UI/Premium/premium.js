@@ -6,7 +6,7 @@ async function getdata() {
   const getitems = await axios.get("http://localhost:5000/premium-Lederboard");
   const result = getitems.data;
   const data = result.response;
-
+  console.log(data);
   for (let i = 0; i < data.length; i++) {
     onscreen(data[i]);
   }
@@ -15,7 +15,7 @@ getdata();
 async function onscreen(data) {
   const premium_user_position = pos;
   const premium_username = data.user_name;
-  const premium_user_amount = data.sum;
+  const premium_user_amount = data.Total_Expense;
 
   const tr = document.createElement("tr");
 

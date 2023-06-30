@@ -44,5 +44,27 @@ class ExpenseService {
       throw { error };
     }
   }
+
+  async updateexpense(user, data) {
+    try {
+      let userId = user.id;
+      let amount = data.expense_amount;
+
+      if (user.Total_Expense == undefined) {
+        user.Total_Expense = amount;
+        console.log(user.Total_Expense);
+      } else {
+        user.Total_Expense = user.Total_Expense + Number(amount);
+        console.log(user.Total_Expense);
+      }
+
+      const expense = await this.expenseRepository.updateexpense(userId, user);
+      return expense;
+    } catch (error) {
+      console.log("Something went wrong at Service layer");
+      throw { error };
+    }
+  }
 }
+
 module.exports = ExpenseService;

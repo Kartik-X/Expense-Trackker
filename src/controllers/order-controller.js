@@ -53,15 +53,21 @@ const Statusupdate = async (req, res) => {
         return orders.update({ paymentId: payment_id, status: status });
       })
       .catch((err) => {
-        console.error(err, "123");
+        console.log(err);
         return order
           .findOne({ where: { orderId: order_id } })
           .then((orders) => {
-            return orders.update({ paymentId: payment_id, status: "Fail" });
+            return orders.update({ paymentId: payment_id, status: status });
           });
       });
 
-    const updateUser = req.user.update({ ispremium: true });
+    let updateUser;
+
+    if (status === "Success") {
+      updateUser = req.user.update({ ispremium: true });
+    } else {
+      updateUser = Promise.resolve();
+    }
 
     Promise.all([updateOrder, updateUser])
       .then(() => {
@@ -98,18 +104,22 @@ const leaderboard = async (req, res) => {
         where: {
           id: i,
         },
-        include: Expense,
+      });
+      data.push({
+        user_name: user.username,
+        premium: user.ispremium,
+        Total_Expense: user.Total_Expense,
       });
 
-      let sum = 0;
+      // let sum = 0;
 
-      user.Expenses.forEach((expense) => {
-        sum = sum + Number(expense.expense_amount);
-      });
-      data.push({ user_name: user.username, sum, premium: user.ispremium });
-      data.sort((a, b) => b.sum - a.sum);
+      // user.Expenses.forEach((expense) => {
+      //   sum = sum + Number(expense.expense_amount);
+      //   console.log(user.username);
+      // });
+      // data.push({ user_name: user.username, sum, premium: user.ispremium });
     }
-
+    data.sort((a, b) => b.Total_Expense - a.Total_Expense);
     return res.status(201).json({
       response: data,
       success: true,

@@ -19,5 +19,5 @@ app.use("/", premium);
 
 app.listen(PORT, async () => {
   console.log(`Server is running on port:${PORT}`);
-  // db.sequelize.sync({ alter: true });
+  //db.sequelize.sync({ force: true });
 });

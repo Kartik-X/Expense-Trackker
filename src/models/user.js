@@ -28,9 +28,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       ispremium: {
         type: DataTypes.BOOLEAN,
+      },
+      Total_Expense: {
+        type: DataTypes.INTEGER,
       },
     },
     {
