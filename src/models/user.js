@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Expense, { foreignKey: "userId" });
       User.hasMany(models.order);
+      User.hasMany(models.ForgotPassword, { foreignKey: "userId" });
     }
   }
   User.init(
@@ -45,6 +46,11 @@ module.exports = (sequelize, DataTypes) => {
 
   User.beforeCreate((user) => {
     //Hook/trigger to encrypt the password
+    const encryptedPassword = bcrypt.hashSync(user.password, SALT);
+    user.password = encryptedPassword;
+  });
+
+  User.beforeUpdate((user) => {
     const encryptedPassword = bcrypt.hashSync(user.password, SALT);
     user.password = encryptedPassword;
   });

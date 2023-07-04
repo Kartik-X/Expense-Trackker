@@ -1,9 +1,11 @@
 const UserRepository = require("../repository/signup_login-repository");
 const userrepository = new UserRepository();
+const { ForgotPassword } = require("../models/index");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { JWT_KEY } = require("../config/serverConfig");
 const Sib = require("sib-api-v3-sdk");
+const { v4: uuidv4 } = require("uuid");
 
 class UserService {
   async login(email, plainPassword) {
@@ -43,8 +45,17 @@ class UserService {
     }
   }
 
-  async forgotPassword(loginemail) {
+  async forgotPassword(login_email) {
     try {
+      const user = await userrepository.getByEmail(login_email);
+
+      const resetToken = uuidv4();
+
+      const forgotToken = await userrepository.Post_forgotToken(
+        resetToken,
+        user.id
+      );
+
       const tranEmailApi = new Sib.TransactionalEmailsApi();
 
       const sender = {
@@ -54,7 +65,7 @@ class UserService {
 
       const recievers = [
         {
-          email: loginemail,
+          email: login_email,
         },
       ];
 
@@ -62,10 +73,37 @@ class UserService {
         sender,
         to: recievers,
         subject: "Trail to check the working",
-        textContent: "Sendin blue checking out",
+        textContent: `<h3>Kindly click on the below link to reset your password</h3>
+        <a href="http://localhost:5000/resetpasswordForm/${resetToken}">Reset Password</a>
+        
+        cheers`,
       });
+      return true;
     } catch (error) {
-      console.log("Something went wrong at Service layer");
+      console.log("Something went wrong at password reset");
+      throw { error };
+    }
+  }
+
+  async resetPassword(token, updatedPassword) {
+    try {
+      const user = await ForgotPassword.findOne({
+        where: { uuid: token },
+      });
+
+      if (user.dataValues.uuid && user.dataValues.isActive == "true") {
+        try {
+          const updateUser = await userrepository.resetPassword(
+            user,
+            updatedPassword
+          );
+          return updateUser;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    } catch (error) {
+      console.log("Something went wrong in updating password");
       throw { error };
     }
   }
