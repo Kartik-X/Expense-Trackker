@@ -72,7 +72,7 @@ class UserService {
       await tranEmailApi.sendTransacEmail({
         sender,
         to: recievers,
-        subject: "Trail to check the working",
+        subject: "Password reset ",
         textContent: `<h3>Kindly click on the below link to reset your password</h3>
         <a href="http://localhost:5000/resetpasswordForm/${resetToken}">Reset Password</a>
         

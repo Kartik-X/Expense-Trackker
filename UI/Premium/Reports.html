@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports</title>
+    <link rel="stylesheet" type="text/css" href="Reports.css" />
+  </head>
+  <body>
+    <main classs="main">
+      <form>
+        <div id="daily">
+          <h3 id="expenses">Expense Report Generate:</h3>
+          <input type="date" class="from_date" name="date" required />
+          <label id="start_date">Start Date:</label>
+          <input type="date" class="to_date" name="date" required="" />
+          <label id="to_date">End Date:</label>
+          <button id="show_button">Show</button>
+          <button id="download_button">Download</button>
+        </div>
+      </form>
+
+      <div class="table-responsive">
+        <table class="expense-data">
+          <thead>
+            <tr>
+              <th class="exp-date">Date</th>
+              <th class="exp-amt">Expense Amount</th>
+              <th class="exp-name">Expense Name</th>
+              <th class="exp-cat">Category</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+  <script src="Reports.js"></script>
+</html>

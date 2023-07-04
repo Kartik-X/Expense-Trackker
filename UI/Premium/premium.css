@@ -48,3 +48,18 @@ body{
     font-family: Georgia, 'Times New Roman', Times, serif;
     color:rgb(165, 11, 11)
   }
+
+  .home{
+    background-color: rgb(99, 98, 107);
+    position:absolute;
+    top:30px;
+    left:150px;
+    margin-right: 5px;
+    padding:8px 15px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #ebf440;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }

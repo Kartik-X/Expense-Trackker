@@ -8,6 +8,7 @@ const user = document.querySelector(".expense-data tbody");
 const premium = document.getElementById("premium");
 const premium_user = document.getElementById("premiumuser");
 const leader = document.getElementById("leaderboard");
+const reports = document.getElementById("reports");
 
 async function getdata() {
   const token = localStorage.getItem("userId");
@@ -176,5 +177,17 @@ leader.addEventListener("click", async () => {
     window.location.href = "/UI/Premium/premium.html";
   } else {
     alert("Purchase Premium!! To enjoy Leaderboard like other feautures");
+  }
+});
+
+reports.addEventListener("click", async () => {
+  const token = localStorage.getItem("userId");
+  const check = await axios.get("http://localhost:5000/premiumcheck", {
+    headers: { Authorization: token },
+  });
+  if (check.data.data == true) {
+    window.location.href = "/UI/Premium/Reports.html";
+  } else {
+    alert("Purchase Premium!! To enjoy Reports like other feautures");
   }
 });

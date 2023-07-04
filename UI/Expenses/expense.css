@@ -140,6 +140,14 @@ right:145px;
   background-color: rgb(99, 98, 107);
   color:hsl(60, 100%, 50%);
   position:absolute;
-  top:30px;
+  top:20px;
   left:150px;
+}
+
+#reports{
+  background-color: rgb(99, 98, 107);
+  color:hsl(60, 100%, 50%);
+  position:absolute;
+  top:20px;
+  left:350px;
 }

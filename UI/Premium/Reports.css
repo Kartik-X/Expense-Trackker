@@ -1,0 +1,125 @@
+body{
+    background-color:rgb(236, 231, 231);
+    font-family: Helvetica;
+    color: rgb(76, 33, 232);
+    font-size: 15px;
+    
+  }
+
+.main{
+
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    background-color:rgb(202, 28, 28);
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  #daily{ 
+    width: 100%;
+    padding-left: 35px;;
+    background-color: #55b6b2;
+    font-weight: bold;
+    font-family: Helvetica;
+    color: #fff;
+    border:1px solid rgb(13, 238, 77);
+  }
+  #expenses{
+    margin-right: 20px;
+    font-weight:bold;    
+    font-size: 20px;
+    padding-left: 50px;
+    color:rgb(249, 249, 41)
+  }
+  th{
+    background-color: #55b6b2;
+    padding:10px 5px;
+    color: #fff;
+    text-align: left;
+  }
+  td{
+    padding:10px 5px;
+  }
+  .table-responsive{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 10px;
+    
+  }
+  .expense-data {
+    width: 85%;
+    border-spacing: 0;
+    padding-left: 155px;
+  }
+
+  .expense-data td, .expense-data th {
+    text-align: center;
+    word-break: break-all;
+   }
+   .exp-date{
+     width: 10%;
+   }
+  
+  .exp-amt {
+    width: 30%;
+  }
+  .exp-name {
+  width: 30%;
+  }
+  
+  .exp-cat {
+    width: 15%;
+  }
+  .from_date{
+    position:absolute;
+    border-radius: 10px;
+    padding:4px;
+    top:28px;
+    left:530px;
+  }
+  #start_date{
+    position:absolute;
+    padding:4px;
+    margin-left: 10px;
+    top:30px;
+    left:430px;
+  }
+  .to_date{
+    position:absolute;
+    border-radius: 10px;
+    padding:4px;
+    top:28px;
+    left:800px;  
+}
+#to_date{
+    position:absolute;
+    padding:4px;
+    margin-left: 10px;
+    top:30px;
+    left:700px;
+}
+#show_button{
+    position:absolute;
+    border-width: 3px;
+    border-radius: 15px;
+    font-size:15px;
+    color:#473131;
+    background-color: goldenrod;
+    font-weight: bold;
+    padding: 7px 25px 7px 25px;
+    top:25px;
+    left:1020px;  
+}
+#download_button{
+    position:absolute;
+    border-width: 3px;
+    border-radius: 15px;
+    font-size:15px;
+    color:#473131;
+    background-color: goldenrod;
+    font-weight: bold;
+    padding: 7px 20px 7px 20px;
+    top:25px;
+    left:1150px
+}
