@@ -8,17 +8,27 @@
   </head>
   <body>
     <main classs="main">
-      <form>
-        <div id="daily">
-          <h3 id="expenses">Expense Report Generate:</h3>
-          <input type="date" class="from_date" name="date" required />
-          <label id="start_date">Start Date:</label>
-          <input type="date" class="to_date" name="date" required="" />
-          <label id="to_date">End Date:</label>
-          <button id="show_button">Show</button>
-          <button id="download_button">Download</button>
-        </div>
-      </form>
+      <div id="daily">
+        <h3 id="expenses">Expense Report Generate:</h3>
+        <input
+          type="date"
+          id="from_date"
+          class="from_date"
+          name="date"
+          required
+        />
+        <label id="start_date">Start Date:</label>
+        <input
+          type="date"
+          id="end_date"
+          class="to_date"
+          name="date"
+          required=""
+        />
+        <label id="to_date">End Date:</label>
+        <button id="show_button">Show</button>
+        <button id="download_button">Download</button>
+      </div>
 
       <div class="table-responsive">
         <table class="expense-data">
@@ -34,6 +44,8 @@
         </table>
       </div>
     </main>
+    <button id="home">Home</button>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   <script src="Reports.js"></script>
 </html>

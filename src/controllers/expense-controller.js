@@ -1,5 +1,4 @@
 const ExpenseService = require("../services/expense-service");
-// const { User } = require("../models/index");
 
 const expenseservice = new ExpenseService();
 
@@ -27,6 +26,27 @@ const create = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const expenses = await expenseservice.getdata(req);
+
+    return res.status(201).json({
+      data: expenses,
+      success: true,
+      message: "Successfully fetched all the expenses",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to fetch the expenses",
+      err: error,
+    });
+  }
+};
+
+const getAllExpenses = async (req, res) => {
+  try {
+    const expenses = await expenseservice.PeriodData(req);
 
     return res.status(201).json({
       data: expenses,
@@ -130,11 +150,33 @@ const leaderboard = async (req, res) => {
   }
 };
 
+const expense_download = async (req, res) => {
+  try {
+    const download_expense = await expenseservice.expense_download(req);
+    return res.status(201).json({
+      data: download_expense,
+      success: true,
+      message: "Successfully downloaded the expenses",
+      error: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to download the expenses",
+      err: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   getAll,
+  getAllExpenses,
   update,
   destroy,
   premium_check,
   leaderboard,
+  expense_download,
 };

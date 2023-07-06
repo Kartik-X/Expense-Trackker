@@ -9,6 +9,7 @@ const premium = document.getElementById("premium");
 const premium_user = document.getElementById("premiumuser");
 const leader = document.getElementById("leaderboard");
 const reports = document.getElementById("reports");
+const logout = document.getElementById("logout");
 
 async function getdata() {
   const token = localStorage.getItem("userId");
@@ -190,4 +191,12 @@ reports.addEventListener("click", async () => {
   } else {
     alert("Purchase Premium!! To enjoy Reports like other feautures");
   }
+});
+if (localStorage.getItem("userId") == null) {
+  window.location.href = "/UI/Signup_login/signup_login.html";
+}
+logout.addEventListener("click", () => {
+  console.log("a");
+  localStorage.removeItem("userId");
+  window.location.href = "/UI/Signup_login/signup_login.html";
 });

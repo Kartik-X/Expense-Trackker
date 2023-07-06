@@ -1,8 +1,9 @@
 body{
     background-color:rgb(236, 231, 231);
     font-family: Helvetica;
-    color: rgb(76, 33, 232);
+    color: rgb(62, 61, 65);
     font-size: 15px;
+    font-weight: bold;
     
   }
 
@@ -29,7 +30,7 @@ body{
     margin-right: 20px;
     font-weight:bold;    
     font-size: 20px;
-    padding-left: 50px;
+    padding-left: 100px;
     color:rgb(249, 249, 41)
   }
   th{
@@ -110,6 +111,7 @@ body{
     padding: 7px 25px 7px 25px;
     top:25px;
     left:1020px;  
+    cursor: pointer;
 }
 #download_button{
     position:absolute;
@@ -121,5 +123,19 @@ body{
     font-weight: bold;
     padding: 7px 20px 7px 20px;
     top:25px;
-    left:1150px
+    left:1150px;
+    cursor: pointer;
+}
+#home{
+  position:absolute;
+    border-width: 3px;
+    border-radius: 9px;
+    font-size:15px;
+    color:#473131;
+    background-color: rgb(233, 189, 77);
+    font-weight: bold;
+    padding: 7px 20px 7px 20px;
+    top:10px;
+    left:10px;
+    cursor: pointer;
 }

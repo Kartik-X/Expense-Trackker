@@ -14,4 +14,7 @@ module.exports = {
   JWT_KEY: process.env.JWT_KEY,
   RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
   RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET,
+  Bucket_Name: process.env.BUCKET_NAME,
+  I_Am_UserKey: process.env.IAM_USER_KEY,
+  I_Am_userSecret: process.env.IAM_USER_SECRET,
 };

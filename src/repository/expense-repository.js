@@ -1,6 +1,7 @@
 const { Expense, User } = require("../models/index");
 const { JWT_KEY } = require("../config/serverConfig");
 const jwt = require("jsonwebtoken");
+const { Op } = require("sequelize");
 
 class ExpenseRepository {
   async createdata({ date, expense_amount, description, category, userId }) {
@@ -29,6 +30,25 @@ class ExpenseRepository {
         },
       });
 
+      return expense;
+    } catch (error) {
+      console.log(error);
+      console.log("Something went in repository layer");
+    }
+  }
+
+  async PeriodData(data) {
+    const userid = data.user.id;
+    const { Start_Date, End_Date } = data.query;
+    try {
+      const expense = await Expense.findAll({
+        where: {
+          userId: userid,
+          date: {
+            [Op.between]: [Start_Date, End_Date],
+          },
+        },
+      });
       return expense;
     } catch (error) {
       console.log(error);
