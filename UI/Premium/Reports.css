@@ -139,3 +139,13 @@ body{
     left:10px;
     cursor: pointer;
 }
+.pagination{
+  position:absolute;
+  bottom:35px;
+  left:700px;
+}
+
+button.active {
+  background-color: #55b6b2;
+  color: #ffffff;
+}

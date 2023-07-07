@@ -22,15 +22,22 @@ class ExpenseRepository {
     }
   }
 
-  async getdata(data) {
+  async getdata(userId, pageNum, limitNum) {
     try {
-      const expense = await Expense.findAll({
+      const { count, rows } = await Expense.findAndCountAll({
         where: {
-          userId: data.user.id,
+          userId: userId,
         },
+        offset: (pageNum - 1) * limitNum,
+        limit: limitNum,
       });
 
-      return expense;
+      const totalItems = count;
+      const totalPages = Math.ceil(totalItems / limitNum);
+
+      const get_info = { data: rows, totalItems, totalPages };
+
+      return get_info;
     } catch (error) {
       console.log(error);
       console.log("Something went in repository layer");

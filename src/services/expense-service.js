@@ -51,9 +51,13 @@ class ExpenseService {
     }
   }
 
-  async getdata(data) {
+  async getdata(userId, pageNum, limitNum) {
     try {
-      const expense = await this.expenseRepository.getdata(data);
+      const expense = await this.expenseRepository.getdata(
+        userId,
+        pageNum,
+        limitNum
+      );
       return expense;
     } catch (error) {
       console.log("Something went wrong at Service layer");

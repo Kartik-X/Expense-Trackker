@@ -10,6 +10,10 @@ const premium_user = document.getElementById("premiumuser");
 const leader = document.getElementById("leaderboard");
 const reports = document.getElementById("reports");
 const logout = document.getElementById("logout");
+const pagination = document.querySelector(".pagination");
+
+const itemsPerPage = 9;
+let currentPage = 1;
 
 async function getdata() {
   const token = localStorage.getItem("userId");
@@ -28,60 +32,129 @@ async function getdata() {
   }
   premium_check();
 
-  const getitems = await axios.get("http://localhost:5000/expense", {
-    headers: { Authorization: token },
-  });
-  const response = getitems.data;
-  const data = response.data;
-  console.log(response);
-  for (let i = 0; i < data.length; i++) {
-    onscreen(data[i]);
+  async function displayExpenses() {
+    const getitems = await axios.get(
+      `http://localhost:5000/expense?page=${currentPage}&limit=${itemsPerPage}`,
+      {
+        headers: { Authorization: token },
+      }
+    );
+    const response = getitems.data;
+    const data = response.data;
+    const totalPages = response.totalPages;
+
+    user.innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+      onscreen(data[i]);
+    }
+    createPaginationButtons(totalPages);
   }
+  function onscreen(get) {
+    const exp_id = get.id;
+    const exp_date = get.date;
+    const exp_amt = get.expense_amount;
+    const exp_desc = get.description;
+    const exp_cat = get.category;
+
+    const tr = document.createElement("tr");
+    const td_date = document.createElement("td");
+    const td_amt = document.createElement("td");
+    const td_name = document.createElement("td");
+    const td_cat = document.createElement("td");
+    const td_action = document.createElement("td");
+
+    td_date.innerText = exp_date;
+    td_name.innerText = exp_desc;
+    td_cat.innerText = exp_cat;
+    td_amt.innerText = exp_amt;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = `<span class="Deletebtn">Delete</span>`;
+    td_action.appendChild(deleteBtn);
+
+    tr.appendChild(td_date);
+    tr.appendChild(td_amt);
+    tr.appendChild(td_name);
+    tr.appendChild(td_cat);
+    tr.appendChild(td_action);
+
+    user.appendChild(tr);
+
+    deleteBtn.addEventListener("click", async () => {
+      deleteBtn.parentNode.parentNode.remove();
+
+      const token = localStorage.getItem("userId");
+      const config = { headers: { Authorization: token } };
+      await axios.delete(
+        `http://localhost:5000/expense/${exp_id}?amount=${exp_amt}`,
+        config
+      );
+    });
+  }
+
+  function createPaginationButtons(totalPages) {
+    pagination.innerHTML = "";
+
+    const previousButton = document.createElement("button");
+    previousButton.innerText = "Previous";
+    previousButton.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayExpenses();
+      }
+    });
+    pagination.appendChild(previousButton);
+
+    let startPage, endPage;
+
+    if (currentPage <= 2) {
+      startPage = 1;
+      endPage = Math.min(4, totalPages - 1);
+    } else if (currentPage >= totalPages - 1) {
+      startPage = Math.max(2, totalPages - 3);
+      endPage = totalPages - 1;
+    } else {
+      startPage = currentPage - 1;
+      endPage = currentPage + 1;
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      if (i > 0 && i < totalPages) {
+        const button = document.createElement("button");
+        button.innerText = i;
+        button.addEventListener("click", () => {
+          currentPage = i;
+          displayExpenses();
+        });
+        if (i === currentPage) {
+          button.classList.add("active");
+        }
+        pagination.appendChild(button);
+      }
+    }
+
+    const lastPageButton = document.createElement("button");
+    lastPageButton.innerText = totalPages;
+    lastPageButton.addEventListener("click", () => {
+      currentPage = totalPages;
+      displayExpenses();
+    });
+    pagination.appendChild(lastPageButton);
+
+    const nextButton = document.createElement("button");
+    nextButton.innerText = "Next";
+    nextButton.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        displayExpenses();
+      }
+    });
+    pagination.appendChild(nextButton);
+  }
+  displayExpenses();
+  console.log(displayExpenses());
 }
 getdata();
-
-function onscreen(get) {
-  const exp_id = get.id;
-  const exp_date = get.date;
-  const exp_amt = get.expense_amount;
-  const exp_desc = get.description;
-  const exp_cat = get.category;
-
-  const tr = document.createElement("tr");
-  const td_date = document.createElement("td");
-  const td_amt = document.createElement("td");
-  const td_name = document.createElement("td");
-  const td_cat = document.createElement("td");
-  const td_action = document.createElement("td");
-
-  td_date.innerText = exp_date;
-  td_name.innerText = exp_desc;
-  td_cat.innerText = exp_cat;
-  td_amt.innerText = exp_amt;
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.innerHTML = `<span class="Deletebtn">Delete</span>`;
-  td_action.appendChild(deleteBtn);
-
-  tr.appendChild(td_date);
-  tr.appendChild(td_amt);
-  tr.appendChild(td_name);
-  tr.appendChild(td_cat);
-  tr.appendChild(td_action);
-
-  user.appendChild(tr);
-
-  deleteBtn.addEventListener("click", async () => {
-    deleteBtn.parentNode.parentNode.remove();
-
-    const token = localStorage.getItem("userId");
-    const config = { headers: { Authorization: token } };
-    await axios.delete(
-      `http://localhost:5000/expense/${exp_id}?amount=${exp_amt}`,
-      config
-    );
-  });
-}
 
 form.addEventListener("submit", onsubmit);
 

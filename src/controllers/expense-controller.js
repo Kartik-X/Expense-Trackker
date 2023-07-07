@@ -25,10 +25,17 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const expenses = await expenseservice.getdata(req);
+    const userId = req.user.id;
+    const { page, limit } = req.query;
+    const pageNum = Number(page);
+    const limitNum = Number(limit);
+
+    const expenses = await expenseservice.getdata(userId, pageNum, limitNum);
 
     return res.status(201).json({
-      data: expenses,
+      data: expenses.data,
+      totalItems: expenses.totalItems,
+      totalPages: expenses.totalPages,
       success: true,
       message: "Successfully fetched all the expenses",
       err: {},
