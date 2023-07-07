@@ -10,9 +10,11 @@ const premium_user = document.getElementById("premiumuser");
 const leader = document.getElementById("leaderboard");
 const reports = document.getElementById("reports");
 const logout = document.getElementById("logout");
+const select_items = document.getElementById("select_items");
+const form_items = document.getElementById("form_items");
 const pagination = document.querySelector(".pagination");
 
-const itemsPerPage = 9;
+const itemsPerPage = localStorage.getItem("Expenses") || 9;
 let currentPage = 1;
 
 async function getdata() {
@@ -227,7 +229,6 @@ async function submit(e) {
   rzp.open();
 
   rzp.on("payment.failed", function (response) {
-    console.log(response);
     const paymentId = response.error.metadata.payment_id;
     axios.post(
       "http://localhost:5000/Statusupdate",
@@ -269,7 +270,10 @@ if (localStorage.getItem("userId") == null) {
   window.location.href = "/UI/Signup_login/signup_login.html";
 }
 logout.addEventListener("click", () => {
-  console.log("a");
   localStorage.removeItem("userId");
   window.location.href = "/UI/Signup_login/signup_login.html";
+});
+
+form_items.addEventListener("click", () => {
+  localStorage.setItem("Expenses", select_items.value);
 });

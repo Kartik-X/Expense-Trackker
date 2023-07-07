@@ -154,8 +154,27 @@ right:145px;
   left:350px;
 }
 
-.pagination{
+#items_perPage{
   position:absolute;
+  top:20px;
+  left:1050px;
+  padding: 5px 8px;
+}
+#select_items{
+  position:absolute;
+  top:-10px;
+  left:985px;
+  padding: 4px 8px 0px;
+  font-size: 15px;
+}
+button.active {
+  background-color: #200fd6;
+  color: #ffffff;
+}
+
+.pagination{
+  position:fixed;
   bottom: 0px;
   left:600px;
 }
+
