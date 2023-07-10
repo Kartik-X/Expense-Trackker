@@ -1,12 +1,17 @@
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const Sib = require("sib-api-v3-sdk");
+const config = require("./config.json");
 
 dotenv.config();
 
 const client = Sib.ApiClient.instance;
 const apiKey = client.authentications["api-key"];
 apiKey.apiKey = process.env.API_KEY;
+
+config.development.username = process.env.DB_USERNAME;
+config.development.password = process.env.DB_PASSWORD;
+config.development.database = process.env.DB_NAME;
 
 module.exports = {
   PORT: process.env.PORT,
