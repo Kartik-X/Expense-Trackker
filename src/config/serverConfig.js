@@ -17,4 +17,5 @@ module.exports = {
   Bucket_Name: process.env.BUCKET_NAME,
   I_Am_UserKey: process.env.IAM_USER_KEY,
   I_Am_userSecret: process.env.IAM_USER_SECRET,
+  SYNC_DB: process.env.SYNC_DB,
 };

@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "root",
-    "password": "8050622538",
-    "database": "Expense Tracker",
+    "username": "your Mysql username",
+    "password": "your Mysql password",
+    "database": "your Mysql database name",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
