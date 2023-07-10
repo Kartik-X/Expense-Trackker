@@ -112,6 +112,7 @@ const leaderboard = async (req, res) => {
       });
     }
     data.sort((a, b) => b.Total_Expense - a.Total_Expense);
+
     return res.status(201).json({
       response: data,
       success: true,

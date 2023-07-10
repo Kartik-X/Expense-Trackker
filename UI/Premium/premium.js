@@ -1,5 +1,6 @@
 const userdata = document.querySelector(".premium-data tbody");
 const home = document.querySelector(".home");
+const reports = document.querySelector(".reports");
 
 let pos = 1;
 
@@ -36,6 +37,10 @@ async function onscreen(data) {
   pos++;
 }
 
-home.addEventListener("click", async () => {
+home.addEventListener("click", () => {
   window.location.href = "/UI/Expenses/expense.html";
+});
+
+reports.addEventListener("click", () => {
+  window.location.href = "/UI/Premium/Reports.html";
 });
