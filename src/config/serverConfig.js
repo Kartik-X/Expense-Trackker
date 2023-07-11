@@ -14,7 +14,7 @@ config.development.password = process.env.DB_PASSWORD;
 config.development.database = process.env.DB_NAME;
 
 module.exports = {
-  PORT: process.env.PORT,
+  PORT: process.env.PORT || 5000,
   SALT: bcrypt.genSaltSync(10),
   JWT_KEY: process.env.JWT_KEY,
   RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
