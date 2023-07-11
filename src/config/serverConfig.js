@@ -12,6 +12,7 @@ apiKey.apiKey = process.env.API_KEY;
 config.development.username = process.env.DB_USERNAME;
 config.development.password = process.env.DB_PASSWORD;
 config.development.database = process.env.DB_NAME;
+config.development.host = process.env.DB_HOST;
 
 module.exports = {
   PORT: process.env.PORT || 5000,
