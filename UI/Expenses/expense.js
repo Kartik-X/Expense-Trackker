@@ -21,7 +21,7 @@ async function getdata() {
   const token = localStorage.getItem("userId");
 
   async function premium_check() {
-    const check = await axios.get("http://localhost:5000/premiumcheck", {
+    const check = await axios.get("http://13.51.56.150:5000/premiumcheck", {
       headers: { Authorization: token },
     });
     if (check.data.data == true) {
@@ -36,7 +36,7 @@ async function getdata() {
 
   async function displayExpenses() {
     const getitems = await axios.get(
-      `http://localhost:5000/expense?page=${currentPage}&limit=${itemsPerPage}`,
+      `http://13.51.56.150:5000/expense?page=${currentPage}&limit=${itemsPerPage}`,
       {
         headers: { Authorization: token },
       }
@@ -88,7 +88,7 @@ async function getdata() {
       const token = localStorage.getItem("userId");
       const config = { headers: { Authorization: token } };
       await axios.delete(
-        `http://localhost:5000/expense/${exp_id}?amount=${exp_amt}`,
+        `http://13.51.56.150:5000/expense/${exp_id}?amount=${exp_amt}`,
         config
       );
     });
@@ -176,7 +176,7 @@ function onsubmit(e) {
 
   async function postdata() {
     user.innerHTML = "";
-    const post = await axios.post("http://localhost:5000/expense", obj);
+    const post = await axios.post("http://13.51.56.150:5000/expense", obj);
 
     await getdata();
 
@@ -184,7 +184,7 @@ function onsubmit(e) {
     const config = { headers: { Authorization: token } };
 
     const total_expense = await axios.patch(
-      "http://localhost:5000/total_expense",
+      "http://13.51.56.150:5000/total_expense",
       obj,
       config
     );
@@ -203,7 +203,7 @@ async function submit(e) {
   e.preventDefault();
 
   const token = localStorage.getItem("userId");
-  const response = await axios.get("http://localhost:5000/premium", {
+  const response = await axios.get("http://13.51.56.150:5000/premium", {
     headers: { Authorization: token },
   });
 
@@ -212,7 +212,7 @@ async function submit(e) {
     order_id: response.data.orders.id,
     handler: async function (response) {
       await axios.post(
-        "http://localhost:5000/Statusupdate",
+        "http://13.51.56.150:5000/Statusupdate",
         {
           order_id: options.order_id,
           payment_id: response.razorpay_payment_id,
@@ -231,7 +231,7 @@ async function submit(e) {
   rzp.on("payment.failed", function (response) {
     const paymentId = response.error.metadata.payment_id;
     axios.post(
-      "http://localhost:5000/Statusupdate",
+      "http://13.51.56.150:5000/Statusupdate",
       {
         order_id: options.order_id,
         payment_id: paymentId,
@@ -245,7 +245,7 @@ async function submit(e) {
 
 leader.addEventListener("click", async () => {
   const token = localStorage.getItem("userId");
-  const check = await axios.get("http://localhost:5000/premiumcheck", {
+  const check = await axios.get("http://13.51.56.150:5000/premiumcheck", {
     headers: { Authorization: token },
   });
   if (check.data.data == true) {
@@ -257,7 +257,7 @@ leader.addEventListener("click", async () => {
 
 reports.addEventListener("click", async () => {
   const token = localStorage.getItem("userId");
-  const check = await axios.get("http://localhost:5000/premiumcheck", {
+  const check = await axios.get("http://13.51.56.150:5000/premiumcheck", {
     headers: { Authorization: token },
   });
   if (check.data.data == true) {
